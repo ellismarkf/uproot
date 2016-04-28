@@ -18,7 +18,7 @@ Then: `uproot <path/to/your/shrinkwrapped/package.json> <'url-to-your-private-re
 
 ie: `uproot ~/projects/cool-project/npm-shrinkwrap.json 'http://some-host:8000/artifactory/registry'`
 
-Once **uproots** finishes processing, it will output a `.txt` file listing all the dependencies you use in your project that aren't currently in the registry, and whether the package is simply not in the registry or it needs a version bump.  The list is comprised of entries that are formatted as follows:
+Once **uproots** finishes processing, it will output a `.txt` file listing all the dependencies you use in your project that aren't currently in the registry, and noting whether the package needs a version bump or is simply not in the registry.  The list is comprised of entries that are formatted as follows:
 
 ```
 	package name: <name>
