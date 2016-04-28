@@ -21,5 +21,5 @@ ie: `uproot ~/projects/cool-project/npm-shrinkwrap.json 'http://some-host:8000/a
 
 ## caveats
 
-* I don't know if this works on Windows.  Pull requests to enable Windows support are welcome. :)
+* I don't know if this works on Windows.  Pull requests to enable Windows support are welcome. :neckbeard:
 * If you've already pulled your dependencies from your custom registry, when you run `npm shrinkwrap`, your dependencies' resolution URL (where the .tgz was pulled from) will point to your custom registry.  This means that for dependencies that only need a version bump (ie, exist in the registry, but not at the version you are requesting), the resolution URL will still be pointing to your custom registry.  Why is this a problem?  Because you want to point the 
