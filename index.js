@@ -8,8 +8,9 @@ var fs = require('fs')
 var path = require('path')
 var artifactsRegEx = /"(.+)"/g
 var packageRegEx = /"(.+).tgz"/g
-var artifactoryBaseURL = 'http://pros-maven:8888/artifactory/npm-repo'
+var registryBaseUrl = process.argv[3]
 var cURL = 'curl -i -L '
+
 function generateDesc(dep, version, versionRange, type, resolvedURL) {
 	var requestTypes = {
 		'newPkg': 'new npm module',
@@ -24,8 +25,10 @@ function generateDesc(dep, version, versionRange, type, resolvedURL) {
 		'______________________________________________________________________________\n\n'
 	)
 }
+
 var unapprovedPkgs = []
 var unapprovedVersions = []
+
 series([
 		function(callback) {
 			fs.unlink(path.join(__dirname, 'uprootedDeps.txt'), (err) => {
@@ -35,7 +38,7 @@ series([
 		}
 	  , function(callback) {
 	  		console.info('fetching existing npm modules')
-			exec(cURL + artifactoryBaseURL, function(error, stdout, stderr) {
+			exec(cURL + registryBaseUrl, function(error, stdout, stderr) {
 				var artifacts = stdout
 					.match(artifactsRegEx)
 					.map( function(a, i, artfx) {
@@ -93,7 +96,7 @@ series([
 			  			var version = fullDepSpec.version
 						var versionRange = fullDepSpec.from
 						var resolvedURL = fullDepSpec.resolved
-			  			var packageURL = artifactoryBaseURL + '/' + dep + '/-/'
+			  			var packageURL = registryBaseUrl + '/' + dep + '/-/'
 			  			exec(cURL + packageURL, function(error, stdout, stderr) {
 			  				if (error) return callbackF(error)
 			  				var versions = stdout
@@ -116,10 +119,7 @@ series([
 			  		callbackS(null, unapprovedVersions)
 			  	}]
 			  , function(err, results) {
-			  		if (err) {
-			  			throw err
-			  		}
-			  		console.log(results)
+			  		if (err) throw err
 					console.info('Finished! Your license review document is at', path.join(__dirname, 'uprootedDeps.txt'))
 			})
 		}
