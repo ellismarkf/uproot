@@ -1,0 +1,19 @@
+{
+  "name": "uproot",
+  "version": "1.0.0",
+  "description": "utility that checks if a given npm module in a shrinkwrapped package.json is already in artifactory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mellis",
+  "license": "ISC",
+  "preferGlobal": true,
+  "bin": {
+    "uproot": "index.js"
+  },
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "lodash": "^4.11.0"
+  }
+}
