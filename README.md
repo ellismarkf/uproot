@@ -39,8 +39,8 @@ cd uproot
 npm i
 npm link
 uproot <path/to/your/shrinkwrapped/package.json> <'url-to-your-private-registry'>
-:joy:
 ```
+:joy:
 
 ## a quick note
 
