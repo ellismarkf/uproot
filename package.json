@@ -1,6 +1,6 @@
 {
   "name": "uproot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node utility that checks if a given npm module in a shrinkwrapped package.json is already in a registry",
   "main": "./index.js",
   "scripts": {
