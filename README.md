@@ -31,6 +31,19 @@ Once **uproots** finishes processing, it will output a `.txt` file listing all t
 
 Now you can give your architect or whoever handles license reviews a copy of your outputted `.txt` file, and both of you can be happy that this process was so easy.
 
+To recap:
+
+```
+git clone git@github.com:ellismarkf/uproot.git
+cd uproot
+npm i
+npm link
+uproot <path/to/your/shrinkwrapped/package.json> <'url-to-your-private-registry'>
+:joy:
+```
+
+## a quick note
+
 **uproot** expects a [shrinkwrapped](https://docs.npmjs.com/cli/shrinkwrap) package.json file; if you don't have one, run `npm shrinkwrap` in the directory where your target package.json files lives.
 
 If you do have one, and you have npm configured to pull from a registry other than the default, I would recommend deleting your node_modules/ directory, running `npm cache clean`, and then `npm install` again, this time making sure that you are pulling from npm's default registry and NOT your private registry.  You can do this by temporarily removing or disabling the configuration that tells npm where to send requests for packages (usually this is in a `.npmrc` file).  After you've pulled your dependencies from npm's registry, run `npm shrinkwrap` again, and feed this file to **uproot**.  See the caveats section below for more information.
