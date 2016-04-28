@@ -16,6 +16,17 @@ Then: `uproot <path/to/your/shrinkwrapped/package.json> <'url-to-your-private-re
 
 ie: `uproot ~/projects/cool-project/npm-shrinkwrap.json 'http://some-host:8000/artifactory/registry'`
 
+Once **uproots** finishes processing, it will output a `.txt` file listing all the dependencies you use in your project that aren't currently in the registry, and whether the package is simply not in the registry or it needs a version bump.  The list is comprised of entries that are formatted as follows:
+
+```
+	package name: <name>
+  	version: <specific-version-number>
+  	from: <semver pattern>
+  	requesting: <new npm module || updated version of existing module>
+  	resolved: <url-to-package>
+	______________________________________________________________________________
+```
+
 **uproot** expects a [shrinkwrapped](https://docs.npmjs.com/cli/shrinkwrap) package.json file; if you don't have one, run `npm shrinkwrap` in the directory where your target package.json files lives.  If you do have one, and you have npm configured to pull from a registry other than the default, I would recommend deleting your node_modules/ directory, run `npm install` again, this time making sure that you are pulling from npm's default registry and NOT your private registry.  You can do this by temporarily removing or disabling the configuration that tells npm where to send requests for packages.  After you've pulled your dependencies from npm's registry, run `npm shrinkwrap` again, and feed this file to **uproot**.  See the caveats section below for more information.
 
 
