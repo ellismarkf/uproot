@@ -12,7 +12,7 @@ It's time consuming, boring, and more importantly, a perfect candidate for scrip
 
 ## how to use it
 
-Once you have the project on your machine, run `npm i` to install the utility's dependencies and create a symlink from `index.js` script to `/usr/local/bin/uproot`, so you can use it from the command line, provided that `/usr/local/bin` is on your PATH.
+Once you have the project on your machine, run `npm i` to install the utility's dependencies and then `npm link` to create a symlink from `index.js` script to `/usr/local/bin/uproot`, so you can use it from the command line (provided that `/usr/local/bin` is on your PATH).
 
 Then: `uproot <path/to/your/shrinkwrapped/package.json> <'url-to-your-private-registry'>`
 
