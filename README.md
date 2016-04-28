@@ -50,6 +50,7 @@ If you do have one, and you have npm configured to pull from a registry other th
 
 ## caveats & assumptions
 
+* **uproot currently only checks top level dependencies, and doesn't indicate whether a given package's transitive dependencies are in the specified registry.  I'm working on it, but pull requests are welcome.**
 * I don't know if this works on Windows.  Pull requests to enable Windows support are welcome. :neckbeard:
 * Make sure your dependencies have been pulled from npm's registry before running `npm shrinkwrap`; this way the file that **uproot** produces will point to each package's location on the internet and not its location on your private registry.
 * If you've already pulled your dependencies from your custom registry before running `npm shrinkwrap`, your dependencies' resolution URL will point to your custom registry.  Why is this a problem?  Because whoever will be reading your `.txt` file and importing the new packages into your registry will need to know where on the internet they can find the package, and pointing them to the custom registry wouldn't be very helpful, since the point of using **uproot** in the first place is to find which dependencies aren't already in the registry.
